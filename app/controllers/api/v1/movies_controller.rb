@@ -12,6 +12,10 @@ class Api::V1::MoviesController < ApplicationController
         render json: MovieSerializer.new(movie), status: 200
     end
 
+    def new
+        movie = Movie.new
+    end
+
     #If @movie.save, render json, else...
     def create
         movie = Movie.create(movie_params)
