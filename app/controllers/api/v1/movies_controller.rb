@@ -18,9 +18,9 @@ class Api::V1::MoviesController < ApplicationController
 
     #If @movie.save, render json, else...
     def create
-        # binding.pry
+        #binding.pry
         movie = Movie.create(movie_params)
-
+        
         render json: MovieSerializer.new(movie), status: 200
     end
 
@@ -28,7 +28,7 @@ class Api::V1::MoviesController < ApplicationController
     def update
         movie = Movie.find(params[:id])
         movie.update(movie_params)
-
+        p movie.errors
         render json: MovieSerializer.new(movie), status: 200
     end
 
