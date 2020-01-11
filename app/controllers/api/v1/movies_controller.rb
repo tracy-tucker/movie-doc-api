@@ -18,6 +18,7 @@ class Api::V1::MoviesController < ApplicationController
 
     #If @movie.save, render json, else...
     def create
+        # binding.pry
         movie = Movie.create(movie_params)
 
         render json: MovieSerializer.new(movie), status: 200
@@ -40,7 +41,7 @@ class Api::V1::MoviesController < ApplicationController
 
     private
         def movie_params
-            params.require(:movie).permit(:title, :year, :rating, :description, :genre_id)
+            params.require(:movie).permit(:title, :genre_id, :year, :rating, :description)
         end
 
 end
