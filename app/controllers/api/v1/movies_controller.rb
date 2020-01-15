@@ -18,10 +18,15 @@ class Api::V1::MoviesController < ApplicationController
 
     #If @movie.save, render json, else...
     def create
-        #binding.pry
-        movie = Movie.create(movie_params)
         
+        movie = Movie.create(movie_params)
+        # if movie.save
+        #     render json: MovieSerializer.new(movie), status: 200
+        # else
+        #     render json: {status: "error", code: 400, message: "Form inputs cannot be blank" } 
+        # end
         render json: MovieSerializer.new(movie), status: 200
+
     end
 
     #If @movie.update, render json, else...
@@ -36,7 +41,8 @@ class Api::V1::MoviesController < ApplicationController
         movie = Movie.find(params[:id])
         movie.delete
 
-        render json: {movieId: movie.id}
+        # render json: {movieId: movie.id}
+        render json: MovieSerializer.new(movies), status: 200
     end
 
     private
