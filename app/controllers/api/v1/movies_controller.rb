@@ -2,14 +2,20 @@ class Api::V1::MoviesController < ApplicationController
 
     def index
         movies = Movie.all
+        options = {
+            include: [:genre]
+        }
 
-        render json: MovieSerializer.new(movies), status: 200
+        render json: MovieSerializer.new(movies, options).serialized_json, status: 200
     end
 
     def show
         movie = Movie.find(params[:id])
+        options = {
+            include: [:genre]
+        }
 
-        render json: MovieSerializer.new(movie), status: 200
+        render json: MovieSerializer.new(movie, options), status: 200
     end
 
     def new
