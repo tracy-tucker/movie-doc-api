@@ -1,5 +1,5 @@
 class GenreSerializer
     include FastJsonapi::ObjectSerializer
-    attributes :name
+    attribute :name
     has_many :movies
 end
