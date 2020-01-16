@@ -1,7 +1,9 @@
 class Api::V1::MoviesController < ApplicationController
 
     def index
+        
         movies = Movie.all
+        
         # options = {
         #     include: [:genre]
         # }
@@ -12,11 +14,7 @@ class Api::V1::MoviesController < ApplicationController
 
     def show
         movie = Movie.find(params[:id])
-        # options = {
-        #     include: [:genre]
-        # }
 
-        # render json: MovieSerializer.new(movie, options).serialized_json, status: 200
         render json: MovieSerializer.new(movie), status: 200
     end
 
@@ -26,12 +24,7 @@ class Api::V1::MoviesController < ApplicationController
 
     #If @movie.save, render json, else...
     def create
-        binding.pry
         movie = Movie.create(movie_params)
-        
-        # options = {
-        #     include: [:genre]
-        # }
         # if movie.save
         #     render json: MovieSerializer.new(movie), status: 200
         # else
@@ -59,7 +52,7 @@ class Api::V1::MoviesController < ApplicationController
 
     private
         def movie_params
-            params.require(:movie).permit(:title, :year, :rating, :description, :genre => [:name]) # genre_attributes: [:id, :name]
+            params.require(:movie).permit(:title, :year, :rating, :description, genre_attributes: [:name])
         end
 
 end
