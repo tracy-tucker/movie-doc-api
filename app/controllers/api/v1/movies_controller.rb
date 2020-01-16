@@ -26,7 +26,7 @@ class Api::V1::MoviesController < ApplicationController
 
     #If @movie.save, render json, else...
     def create
-        #binding.pry
+        binding.pry
         movie = Movie.create(movie_params)
         
         # options = {
@@ -59,7 +59,7 @@ class Api::V1::MoviesController < ApplicationController
 
     private
         def movie_params
-            params.require(:movie).permit(:title, :genre, :year, :rating, :description) # genre_attributes: [:id, :name]
+            params.require(:movie).permit(:title, :year, :rating, :description, :genre => [:name]) # genre_attributes: [:id, :name]
         end
 
 end
