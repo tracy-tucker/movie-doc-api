@@ -30,7 +30,7 @@ class Api::V1::MoviesController < ApplicationController
         # else
         #     render json: {status: "error", code: 400, message: "Form inputs cannot be blank" } 
         # end
-        # render json: MovieSerializer.new(movie, options).serialized_json, status: 200
+
         render json: MovieSerializer.new(movie), status: 200
 
     end
