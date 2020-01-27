@@ -1,14 +1,8 @@
 class Api::V1::MoviesController < ApplicationController
 
     def index
-        
         movies = Movie.all
-        
-        # options = {
-        #     include: [:genre]
-        # }
 
-        # render json: MovieSerializer.new(movies, options).serialized_json, status: 200
         render json: MovieSerializer.new(movies), status: 200
     end
 
@@ -22,23 +16,13 @@ class Api::V1::MoviesController < ApplicationController
         movie = Movie.new
     end
 
-    #If @movie.save, render json, else...
     def create
         movie = Movie.create(movie_params)
-        # if movie.save
-        #     render json: MovieSerializer.new(movie), status: 200
-        #     render json: MovieSerializer.new(movie), status: 200
-        # else
-        #     flash.now[:error] "Input fields must not be blank."
-        #     render json: MovieSerializer.new(movie), status: 200
-        #     render json: {status: "error", code: 400, message: "Form inputs cannot be blank" } 
-        # end
 
         render json: MovieSerializer.new(movie), status: 200
 
     end
 
-    #If @movie.update, render json, else...
     def update
         movie = Movie.find(params[:id])
         movie.update(movie_params)
